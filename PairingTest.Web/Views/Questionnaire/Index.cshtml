@@ -1,0 +1,42 @@
+﻿@model PairingTest.Web.Models.QuestionnaireViewModel
+
+<html>
+<head>   
+      @if (Model != null)
+    {
+        <title>@Model.QuestionnaireTitle</title>
+    }
+    else
+    {
+        <title>Name not found.</title>
+    }
+</head>
+<body>
+@using (Html.BeginForm())
+{
+    <div>
+        @if (Model != null)
+        {
+
+            <h2>@Model.QuestionnaireTitle</h2>
+            <br/>
+
+            for (var i = 0; i < Model.QuestionsText.Count; i++)
+            {
+                <div>
+                    @Model.QuestionsText[i]
+                </div>
+                <div>
+                    @Html.TextBoxFor(model => model.AnswersTest[i])
+                </div>
+
+            }
+        }
+        else
+        {
+            <div>The questionnaire could not be read.</div>
+        }
+    </div>
+}
+</body>
+</html>

@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Net.Http;
 using System.Web.Mvc;
 using Microsoft.Practices.Unity;
+using PairingTest.Web.Helpers;
 using PairingTest.Web.Interfaces;
 using PairingTest.Web.Models;
 
@@ -24,7 +25,6 @@ namespace PairingTest.Web.Controllers
 
         public ViewResult Index()
         {
-
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(_config.Url);
@@ -44,8 +44,14 @@ namespace PairingTest.Web.Controllers
                     return View(viewModel);
                 }
             }
-
             return View("Error");
+        }
+
+
+        [HttpPost]
+        public ActionResult Questionnaire(QuestionnaireViewModel model)
+        {
+           return RedirectToAction("Index");
         }
     }
 }

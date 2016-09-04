@@ -1,8 +1,8 @@
 ﻿@model PairingTest.Web.Models.QuestionnaireViewModel
 
 <html>
-<head>   
-      @if (Model != null)
+<head>
+    @if (Model != null)
     {
         <title>@Model.QuestionnaireTitle</title>
     }
@@ -11,26 +11,29 @@
         <title>Name not found.</title>
     }
 </head>
+
 <body>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Questionnaire", "Questionnaire", FormMethod.Post))
 {
     <div>
         @if (Model != null)
         {
-
             <h2>@Model.QuestionnaireTitle</h2>
+            @Html.HiddenFor(model => model.QuestionnaireTitle)
             <br/>
 
             for (var i = 0; i < Model.QuestionsText.Count; i++)
             {
                 <div>
-                    @Model.QuestionsText[i]
+                    @Html.DisplayFor(model => model.QuestionsText[i])
+                    @Html.HiddenFor(model => model.QuestionsText[i])
                 </div>
                 <div>
-                    @Html.TextBoxFor(model => model.AnswersTest[i])
-                </div>
-
+                    @Html.TextBoxFor(model => model.QuestionsAnswer[i])
+                </div>       
             }
+            <br/>
+            <input type="submit" name="submitQuestionnaire" value="Submit" />
         }
         else
         {

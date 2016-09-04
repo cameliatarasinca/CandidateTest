@@ -7,6 +7,7 @@ namespace PairingTest.Web.Models
         public string QuestionnaireTitle { get; set; }
         public IList<string> QuestionsText { get; set; }
 
-        public IList<string> AnswersTest { get; set; } 
+        public IList<string> QuestionsAnswer { get; set; } 
+
     }
 }
